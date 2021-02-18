@@ -10,11 +10,11 @@ pub struct TabEntryInfo<'a> {
 
 impl<'a> fmt::Display for TabEntryInfo<'a> {
     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-        if self.needle.is_some() {
-            write!(f, "{}", self.needle.unwrap())?;
-        }
+        //if self.needle.is_some() {
+        //   write!(f, "{}", self.needle.unwrap())?;
+        //}
         if self.index.is_some() {
-            write!(f, "__{}", self.index.unwrap())?;
+            write!(f, "{}", self.index.unwrap())?;
         }
         if self.path.is_some() {
             write!(f, "__{}", self.path.unwrap())?;
@@ -99,7 +99,10 @@ fn get_tab_entry_info_internal<'a>(entry: &'a str, separator: &'a str) -> TabEnt
                     parse_index("1", false);
                 } else {
                     // Only the index part is present.
-                    parse_index(remaining, true);
+                    // parse_index(remaining, true);
+                    needle = None;
+                    parse_index(needle_s, true);
+                    path = Some(remaining);
                 }
             }
         } else {
