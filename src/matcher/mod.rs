@@ -68,7 +68,7 @@ impl<'a> Matcher<'a> {
         P: AsRef<path::Path>,
     {
         filter_path_with_re(haystack, &self.re_consecutive)
-            .chain(self.fuzzy_matcher.filter_path(haystack))
             .chain(filter_path_with_re(haystack, &self.re_anywhere))
+            .chain(self.fuzzy_matcher.filter_path(haystack))
     }
 }

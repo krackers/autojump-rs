@@ -6,6 +6,7 @@ use crate::utils::TabEntryInfo;
 use autojump::data;
 use autojump::matcher::Matcher;
 use autojump::Config;
+use itertools::Itertools;
 
 struct QueryConfig<'a> {
     needles: Vec<&'a str>,
@@ -151,10 +152,10 @@ fn do_query<'a>(config: &Config, query: QueryConfig<'a>) -> Vec<path::PathBuf> {
         .skip(index)
         .take(count)
         .map(|p| p.path.clone())
+        .unique()
         .collect();
     if query.use_fallback {
         result.push(".".into())
     }
-
     result
 }
