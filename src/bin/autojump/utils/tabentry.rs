@@ -13,11 +13,11 @@ impl<'a> fmt::Display for TabEntryInfo<'a> {
         //if self.needle.is_some() {
         //   write!(f, "{}", self.needle.unwrap())?;
         //}
-        if self.index.is_some() {
-            write!(f, "{}", self.index.unwrap())?;
-        }
+        //if self.index.is_some() {
+         //   write!(f, "{}", self.index.unwrap())?;
+       //}
         if self.path.is_some() {
-            write!(f, "__{}", self.path.unwrap())?;
+            write!(f, "{}", self.path.unwrap())?;
         }
         Ok(())
     }
@@ -108,6 +108,9 @@ fn get_tab_entry_info_internal<'a>(entry: &'a str, separator: &'a str) -> TabEnt
         } else {
             // No separators at all, the original implementation returned all
             // None's.
+           // if (entry.len() != 0 && entry.chars().next().unwrap() == '/') {
+            //    path = Some(entry);
+           // }
         }
     }
 
