@@ -82,7 +82,7 @@ fn prepare_query<'a>(
     // Try to parse the first needle (command-line argument) as tab entry
     // spec.
     let tab = utils::get_tab_entry_info(needles[0]);
-    if tab.path.is_some() {
+    if tab.path.is_some() && needles.len() == 1 {
         // Just trust the auto-completion, like the original impl does.
         let result = path::Path::new(tab.path.unwrap()).to_path_buf();
         return Query::EarlyResult(result);
@@ -91,7 +91,7 @@ fn prepare_query<'a>(
     // Override query needles if tab entry is found, also set the index
     // requested.
     let index;
-    let needles = if tab.index.is_some() {
+    let needles = if tab.index.is_some() && needles.len() == 1 {
         // process "foo__" and "foo__1" differently
         if tab.index_explicit {
             // explicit match requested, override count

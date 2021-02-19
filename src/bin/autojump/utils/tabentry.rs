@@ -108,9 +108,9 @@ fn get_tab_entry_info_internal<'a>(entry: &'a str, separator: &'a str) -> TabEnt
         } else {
             // No separators at all, the original implementation returned all
             // None's.
-           // if (entry.len() != 0 && entry.chars().next().unwrap() == '/') {
-            //    path = Some(entry);
-           // }
+             if (entry.len() != 0 && entry.chars().next().unwrap() == '/') {
+                path = Some(entry);
+             }
         }
     }
 
